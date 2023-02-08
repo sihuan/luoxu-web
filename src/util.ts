@@ -4,3 +4,9 @@ export function sleep(ms: number) {
   });
   return p;
 }
+
+export function getToken() {
+  let urlSearchParams = new URLSearchParams(window.location.search);
+  let token = urlSearchParams.get("token");
+  return token;
+}

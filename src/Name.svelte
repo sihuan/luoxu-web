@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount, getContext } from "svelte";
+  import { getToken } from "./util.js";
 
   export let group: any;
 
@@ -45,7 +46,7 @@
     abort.abort();
     abort = new AbortController();
     try {
-      const res = await fetch(`${url}/names?g=${group}&q=${input.value}`, {
+      const res = await fetch(`${url}/names?g=${group}&q=${input.value}&token=${getToken()}`, {
         signal: abort.signal,
       });
       const j = await res.json();

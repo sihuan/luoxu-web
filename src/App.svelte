@@ -2,7 +2,7 @@
   import { onMount, setContext } from "svelte";
   import Message from "./Message.svelte";
   import Name from "./Name.svelte";
-  import { sleep } from "./util.js";
+  import { sleep,getToken } from "./util.js";
 
   const LUOXU_URL = "https://lab.lilydjwg.me/luoxu";
   const islocal = LUOXU_URL.startsWith("http://localhost");
@@ -32,7 +32,7 @@
     do_hash_search();
     while (true) {
       try {
-        const res = await fetch(`${LUOXU_URL}/groups`);
+        const res = await fetch(`${LUOXU_URL}/groups?token=${getToken()}`);
         groups = (await res.json()).groups;
         need_update_title = true;
         if (!group) {
@@ -125,9 +125,9 @@
       if (result) {
         result.messages = [];
       }
-      url = `${LUOXU_URL}/search?${qstr}`;
+      url = `${LUOXU_URL}/search?${qstr}&token=${getToken()}`;
     } else {
-      url = `${LUOXU_URL}/search?${q}&end=${more}`;
+      url = `${LUOXU_URL}/search?${q}&end=${more}&token=${getToken()}`;
     }
 
     now = new Date();
