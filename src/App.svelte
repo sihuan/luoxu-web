@@ -4,7 +4,7 @@
   import Name from "./Name.svelte";
   import { sleep,getToken } from "./util.js";
 
-  const LUOXU_URL = "https://lab.lilydjwg.me/luoxu";
+  const LUOXU_URL = "https://lab.imno.top:8443/luoxu";
   const islocal = LUOXU_URL.startsWith("http://localhost");
   let groups = [];
   let group: string;
